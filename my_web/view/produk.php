@@ -1,75 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pertemuan 8</title>
-
-    <!-- CDN BOOTSRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
-    <!-- CDN JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
-    <!-- KONEK KE STYLE -->
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10">
-                <h1>Universitas Muhammadiyah Sumatera Utara</h1>
-                <p style="font-size: 13px;">
-                    Universitas Muhammadiyah Sumatera Utara adalah salah satu Perguruan Tinggi Swasta di Medan Sumatra
-                    Utara. UMSU merupakan salah satu kampus terbaik di Medan, Sumatera Utara baik dari sisi Prestasi
-                    ataupun jumlah Mahasiswanya. Pada kepemimpinan Rektor Prof. Dr. Agussani, M.AP.
-                    <br>
-                    <b>Alamat</b>: <i>Jl. Kapten Muchtar Basri No.3, Glugur Darat II, Kec. Medan Tim., Kota Medan,
-                        Sumatera Utara 20238</i>
-                </p>
-            </div>
-            <div class="col-sm-2">
-                <img src="../img/Logo_UMSU.png" style="width: 90px;">
-            </div>
-            <hr>
-        </div>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Beranda</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Produk</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Jenis Produk</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-
-        <div class="row">
+<div class="row">
             <div class="col-sm-8">
 
                 <p id="notif"></p>
@@ -160,11 +89,76 @@
             </div>
         </div>
 
-    </div>
+<script>
+    $("#simpan").click(function(){
+    var kode_produk = $("#kode_produk").val()
+    if (kode_produk == "") {
+        $("#lihat_kode_produk").text("Kode Produk masih kosong!")
+    }else{
+        $("#lihat_kode_produk").text("")
+    }
 
+    var nama_produk = $("#nama_produk").val()
+    if (nama_produk == "") {
+        $("#lihat_nama_produk").text("Nama Produk masih kosong!")
+    }else{
+        $("#lihat_nama_produk").text("")
+    }
 
-    <script src="jquery.js"></script>
+    var jenis_produk = $("#jenis_produk").val()
+    if (jenis_produk == "") {
+        $("#lihat_jenis_produk").text("Jenis Produk belum dipilih!")
+    }else{
+        $("#lihat_jenis_produk").text("")
+    }
 
-</body>
+    var harga_produk = $("#harga_produk").val()
+    if (harga_produk == "") {
+        $("#lihat_harga_produk").text("Harga produk masih kosong!")
+    }else{
+        $("#lihat_harga_produk").text("")
+    }
 
-</html>
+    var stok = $("#stok_produk").val()
+    if (stok == "") {
+        $("#lihat_stok").text("Stok produk masih kosong!")
+    }else{
+        $("#lihat_stok").text("")
+    }
+
+    var no = $("#no").val()
+    if (no == "") {
+        $("#lihat_no").text("No produk masih kosong!")
+    }else{
+        $("#lihat_no").text("")
+    }
+
+    if (kode_produk != "" && nama_produk != "" && jenis_produk != "" && harga_produk != "" && stok != "" && no != "") {
+        $("#notif").html(`
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Add Successfully!</strong> Data berhasil ditambahkan!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `)
+
+        var tabel_produk = document.getElementById("tabel_produk")
+        var baris = tabel_produk.insertRow(1)
+
+        var kolom_no = baris.insertCell(0)
+        var kolom_kode_produk = baris.insertCell(1)
+        var kolom_nama_produk = baris.insertCell(2)
+        var kolom_jenis_produk = baris.insertCell(3)
+        var kolom_harga = baris.insertCell(4)
+        var kolom_stok = baris.insertCell(5)
+
+        kolom_no.innerHTML = no
+        kolom_kode_produk.innerHTML = kode_produk
+        kolom_nama_produk.innerHTML = nama_produk
+        kolom_jenis_produk.innerHTML = jenis_produk
+        kolom_harga.innerHTML = harga_produk
+        kolom_stok.innerHTML = stok
+
+    }
+
+})
+</script>
